@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Chay command line
+Route::get('command-add-users/{name}/{email}/{password?}', function ($name, $email, $password = '12345678') {
+    Artisan::call('app:created-multi-users', [
+        'name' => $name, 'email' => $email, '--password' => $password
+    ]);
 });

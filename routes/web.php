@@ -43,3 +43,26 @@ Route::get('test-event/{name}', function ($name) {
    \App\Events\EventSendMail::dispatch($name);
 //    event(new \App\Events\EventSendMail($name));
 });
+
+Route::get('chat', function () {
+    return view('chat');
+});
+
+Route::post('message', function (\Illuminate\Http\Request $request) {
+    broadcast(new \App\Events\ChatEventBroadcast(auth()->user(), $request->input('message')));
+
+    return $request->input('message');
+});
+
+Route::get('login/{id}', function ($id) {
+    \Illuminate\Support\Facades\Auth::loginUsingId($id);
+
+    return back();
+});
+
+Route::get('logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+
+    return back();
+});
+

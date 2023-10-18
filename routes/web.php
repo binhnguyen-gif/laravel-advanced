@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\LanguageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,4 +65,6 @@ Route::get('logout', function () {
 
     return back();
 });
+
+Route::get('lang/{locale}', [LanguageController::class, 'index']);
 

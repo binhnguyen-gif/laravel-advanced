@@ -33,6 +33,8 @@ class CreatedMultiUsers extends Command
     public function handle()
     {
         try {
+
+
 //            for($i=0; $i< 3; $i++) {
 //                User::create(
 //                    [
